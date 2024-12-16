@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostrar Fichero XML Asíncrono</title>
+    <style>
+        #xml-content {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 80%;
+            max-width: 600px;
+            white-space: pre-wrap;
+        }
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mostrar Fichero XML Asíncrono</h1>
+    <button id="show-xml-btn">Mostrar Fichero XML</button>
+    <div id="xml-content"></div>
+
+    <script>
+        document.getElementById('show-xml-btn').addEventListener('click', function() {
+    var xml = new XMLHttpRequest();
+    xml.open('GET', 'archivo.xml', true);
+
+    xml.onreadystatechange = function() {
+        if (xml.readyState === 4 && xml.status === 200) {
+            var parser = new DOMParser();
+            var xmlDoc = parser.parseFromString(xml.responseText, 'application/xml');
+
+            // Obtiene todas las etiquetas <persona>
+            var personas = xmlDoc.getElementsByTagName('persona');
+            var contenido = '';
+
+            // Recorre cada etiqueta <persona> y extrae <nombre> y <edad>
+            for (var i = 0; i < personas.length; i++) {
+                var nombre = personas[i].getElementsByTagName('nombre')[0].textContent;
+                var edad = personas[i].getElementsByTagName('edad')[0].textContent;
+                contenido += 'Nombre: ' + nombre + ', Edad: ' + edad + '<br>';
+            }
+
+            document.getElementById('xml-content').innerHTML = contenido;
+        }
+    };
+
+    xml.send();
+});
+
+    </script>
+</body>
+</html>

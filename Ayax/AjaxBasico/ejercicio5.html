@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejecutar Fichero JavaScript con eval</title>
+    <style>
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ejecutar Fichero JavaScript con eval</h1>
+    <button id="load-js-btn">Cargar y Ejecutar JS</button>
+
+    <script>
+        document.getElementById('load-js-btn').addEventListener('click', function() {
+            var js = new XMLHttpRequest();
+            js.open('GET', 'script.js', true);
+
+            js.onreadystatechange = function() {
+                if (js.readyState === 4 && js.status === 200) {
+                    eval(js.responseText);
+                }
+            };
+
+            js.send();
+        });
+    </script>
+</body>
+</html>

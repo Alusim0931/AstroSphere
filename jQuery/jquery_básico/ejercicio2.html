@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mostrar y Ocultar Imagen</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    #imagen {
+      display: none; /* Oculta la imagen inicialmente */
+      width: 300px; /* Ajusta el tamaño de la imagen */
+      height: auto;
+    }
+    button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div style="text-align: center; margin-top: 50px;">
+    <img id="imagen" src="/images/mesa_redonda.jpg" alt="Ejemplo de imagen">
+    <br>
+    <button id="mostrar">Mostrar Imagen</button>
+    <button id="ocultar">Ocultar Imagen</button>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      // Mostrar la imagen con efecto
+      $("#mostrar").click(function() {
+        $("#imagen").show(2500); // Aparece con duración de 2.5 segundos
+      });
+
+      // Ocultar la imagen con efecto
+      $("#ocultar").click(function() {
+        $("#imagen").hide("slow"); // Desaparece con el efecto "slow"
+      });
+    });
+  </script>
+</body>
+</html>

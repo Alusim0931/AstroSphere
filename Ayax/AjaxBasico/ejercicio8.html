@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostrar Fichero JSON Asíncrono</title>
+    <style>
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        #json-output {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 80%;
+            max-width: 600px;
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mostrar Fichero JSON Asíncrono</h1>
+    <button id="show-json-btn">Mostrar fichero JSON</button>
+    <div id="json-output"></div>
+
+    <script>
+        document.getElementById('show-json-btn').addEventListener('click', function() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'archivo.json', true);
+
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // Analizar la respuesta JSON
+            var jsonResponse = JSON.parse(xhr.responseText);
+
+            // Extraer y mostrar los datos
+            var contenido = '';
+            var personas = jsonResponse.personas;
+
+            for (var i = 0; i < personas.length; i++) {
+                contenido += 'Nombre: ' + personas[i].nombre + ', Edad: ' + personas[i].edad + '<br>';
+            }
+
+            // Mostrar ciudad y país
+            contenido += '<br>Ciudad: ' + jsonResponse.ciudad + '<br>';
+            contenido += 'País: ' + jsonResponse.pais;
+
+            document.getElementById('json-output').innerHTML = contenido;
+        }
+    };
+
+    xhr.send();
+});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verificación de Usuario</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+  <h1>Formulario de Login</h1>
+  <form id="loginForm">
+    <label for="usuario">Usuario:</label>
+    <input type="text" id="usuario" name="usuario" required><br><br>
+    
+    <label for="clave">Clave:</label>
+    <input type="password" id="clave" name="clave" required><br><br>
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <div id="mensaje"></div> <!-- Aquí se mostrará el mensaje de respuesta -->
+
+  <script>
+    $(document).ready(function() {
+      // Al enviar el formulario
+      $('#loginForm').submit(function(e) {
+        e.preventDefault(); // Evita que el formulario se envíe de forma tradicional
+
+        // Serializa los datos del formulario
+        var datosFormulario = $(this).serialize();
+
+        // Realiza la solicitud GET al archivo PHP
+        $.get('verificar.php', datosFormulario, function(respuesta) {
+          // Muestra la respuesta del servidor
+          $('#mensaje').html(respuesta);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

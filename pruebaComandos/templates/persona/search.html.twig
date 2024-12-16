@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Personas</h1>
+
+    <form method="GET" action="{{ path('app_persona_index') }}">
+        <input type="text" name="search" value="{{ searchTerm }}" placeholder="Buscar...">
+        <button type="submit">Buscar</button>
+    </form>
+
+    <ul>
+        {% for persona in personas %}
+            <li>
+                <a href="{{ path('app_persona_show', { 'id': persona.id }) }}">
+                    {{ persona.nombre }} {{ persona.apellido }}
+                </a>
+            </li>
+        {% else %}
+            <li>No se encontraron resultados.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ path('app_persona_new') }}">Crear nueva persona</a>
+{% endblock %}

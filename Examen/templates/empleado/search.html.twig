@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Empleados</h1>
+
+    <form method="GET" action="{{ path('app_empleado_index') }}">
+        <input type="text" name="search" value="{{ searchTerm }}" placeholder="Buscar...">
+        <button type="submit">Buscar</button>
+    </form>
+
+    <ul>
+        {% for empleado in empleados %}
+            <li>
+                <a href="{{ path('app_empleado_show', { 'id': empleado.id }) }}">
+                    {{ empleado.nombre }} {{ empleado.apellido }}
+                </a>
+            </li>
+        {% else %}
+            <li>No se encontraron resultados.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ path('app_empleado_new') }}">Crear nuevo empleado</a>
+{% endblock %}

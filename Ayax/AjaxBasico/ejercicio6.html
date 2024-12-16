@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mostrar Fecha del Sistema</title>
+    <style>
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mostrar Fecha del Sistema</h1>
+    <button id="show-date-btn">Mostrar Fecha</button>
+    <div id="output"></div>
+
+    <script>
+        document.getElementById('show-date-btn').addEventListener('click', function() {
+            var fecha = new XMLHttpRequest();
+            fecha.open('GET', 'mostrarFecha.php', true);
+
+            fecha.onreadystatechange = function() {
+                if (fecha.readyState === 4 && fecha.status === 200) {
+                    document.getElementById('output').textContent = fecha.responseText;
+                }
+            };
+
+            fecha.send();
+        });
+    </script>
+</body>
+</html>

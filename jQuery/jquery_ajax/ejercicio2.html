@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cargar Página con $.load</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    #contenido {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      width: 80%;
+      margin-left: 10%;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h2>Cargar otra página HTML</h2>
+  <button id="cargarPagina">Carga una página HTML</button>
+  <div id="contenido"></div>
+
+  <script>
+    $("#cargarPagina").click(function() {
+        $('#contenido').load('archivo.html');
+    });
+  </script>
+</body>
+</html>

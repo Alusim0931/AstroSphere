@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cargar y Ejecutar JS con jQuery</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h1>Cargar y Ejecutar un Archivo JavaScript Externo</h1>
+  <button id="loadScript">Cargar Script</button>
+
+  <script>
+    $(document).ready(function() {
+      // Carga el script al interactuar con el botón
+      $('#loadScript').click(function() {
+        $.ajax({
+          url: 'script.js', // Ruta al archivo JavaScript
+          dataType: 'script', // Se indica el tipo de dato, JavaScript
+          success: function() {
+            console.log("El archivo JS se cargó y ejecutó con éxito.");
+          },
+          error: function(xhr, status, error) {
+            console.error("Hubo un error al cargar el archivo JS: " + error);
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

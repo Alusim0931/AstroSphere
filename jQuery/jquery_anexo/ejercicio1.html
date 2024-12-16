@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cargar archivo de texto con AJAX</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div id="container"></div> <!-- Aquí se mostrará el contenido del archivo -->
+  <div id="error-message" class="error" style="display: none;"></div> <!-- Mensaje de error -->
+
+  <script>
+    $(document).ready(function() {
+      //$.ajax para cargar el archivo de texto
+      $.ajax({
+        url: 'hola.txt', // Ruta del archivo de texto (ajusta la ruta si es necesario)
+        type: 'GET', // Método HTTP para obtener el archivo
+        dataType: 'text', // Tipo de dato texto
+        success: function(data) {
+          // Si la transferencia es correcta, coloca el contenido en el contenedor
+          $('#container').text(data);
+        },
+        error: function(xhr, status, error) {
+          // Si hay un error, muestra un mensaje de error general en la pantalla
+          $('#error-message').text('Error al cargar el archivo. Por favor, inténtalo de nuevo.').show();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

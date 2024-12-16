@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo de carga asíncrona</title>
+    <style>
+        .aligncenter {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" onclick="cargarPagina('inicio.html')">Inicio</a>
+        <a href="#" onclick="cargarPagina('otraPagina.html')">Otra Página</a>
+    </nav>
+    
+    <div id="contenido">
+
+    </div>
+    
+    <script>
+        function cargarPagina(pagina) {
+            fetch(pagina)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al cargar la página');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('contenido').innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('Hubo un problema con la carga:', error);
+                });
+        }
+    </script>
+</body>
+</html>

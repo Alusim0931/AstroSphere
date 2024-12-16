@@ -1,0 +1,3 @@
+Este es el contenido de ejemplo del fichero de texto.
+Puedes agregar varias líneas aquí,
+y estos saltos de línea se mantendrán cuando se muestren en la página web.

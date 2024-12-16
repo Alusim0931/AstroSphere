@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar Parámetros con POST</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Enviar Parámetros con POST</h1>
+
+        <form id="postForm">
+            <div class="form-group">
+                <label for="usuario">Nombre de Usuario:</label>
+                <input type="text" name="usuario" id="usuario" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" name="email" id="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="edad">Edad:</label>
+                <input type="number" name="edad" id="edad" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+
+        <div class="mt-4" id="resultado"></div>
+    </div>
+
+    <script>
+        document.getElementById('postForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Obtener valores de los campos
+            const usuario = document.getElementById('usuario').value;
+            const email = document.getElementById('email').value;
+            const edad = document.getElementById('edad').value;
+
+            // Configurar la solicitud POST
+            fetch('procesar.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `usuario=${encodeURIComponent(usuario)}&email=${encodeURIComponent(email)}&edad=${encodeURIComponent(edad)}`,
+            })
+            .then(response => response.text()) // Obtener la respuesta como texto
+            .then(data => {
+                // Mostrar la respuesta en la página
+                document.getElementById('resultado').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('resultado').innerHTML = `<p class="text-danger">Ocurrió un error al procesar la solicitud.</p>`;
+            });
+        });
+    </script>
+</body>
+</html>

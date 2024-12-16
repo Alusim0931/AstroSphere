@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Países de Europa</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h1>Países de Europa</h1>
+  <button id="cargarPaises">Cargar países de Europa</button>
+
+  <div id="paises"></div> <!-- Aquí se mostrarán los países -->
+
+  <script>
+    $(document).ready(function() {
+      $('#cargarPaises').click(function() {
+        // Realiz la petición a la API usando $.getJSON
+        $.getJSON('https://restcountries.com/v3.1/region/europe', function(data) {
+          let contenido = '<ul>'; // Inicia una lista para mostrar los países
+
+          // Iteración sobre los países y se agregan a la lista
+          data.forEach(function(pais) {
+            contenido += `<li>${pais.name.common}</li>`;
+          });
+
+          contenido += '</ul>'; // Cierra el listado
+
+          // Muestra los países en el contenedor
+          $('#paises').html(contenido);
+        }).fail(function() {
+          // Si hay un error, muestra un mensaje
+          $('#paises').html('Hubo un error al cargar los países.');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fecha con jQuery y PHP</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    #loading {
+      display: none;
+      text-align: center;
+    }
+    #container {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Logo de carga -->
+  <div id="loading">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif" alt="Cargando...">
+    <p>Cargando...</p>
+  </div>
+
+  <!-- Contenedor para mostrar la fecha -->
+  <div id="container"></div>
+
+  <script>
+    $(document).ready(function() {
+      // Mostrar el logo de carga
+      $('#loading').show();
+
+      // Realizar la solicitud AJAX
+      $.ajax({
+        url: 'fecha.php', // Ruta al archivo PHP
+        type: 'GET', // Método HTTP
+        dataType: 'text', // Tipo de dato
+        success: function(data) {
+          // Ocultar logo de carga, cuando carguen los datos
+          $('#loading').hide();
+
+          // Mostrar la fecha recibida en el contenedor
+          $('#container').html('Fecha del sistema: ' + data);
+        },
+        error: function(xhr, status, error) {
+          // Ocultar logo de carga
+          $('#loading').hide();
+
+          // Mostrar el código de error
+          $('#container').html('<p>Error al cargar la información. Código de error: ' + xhr.status + '</p>');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mostrar Fichero de Texto</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    #contenido {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      width: 80%;
+      margin-left: 10%;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <button id="mostrarFichero">Mostrar fichero de texto</button>
+  <div id="contenido"></div>
+
+  <script>
+    $("#mostrarFichero").click(function() {
+      $.get("archivo.xml", function(xml) {
+        $("#contenido").empty();
+
+        $(xml).find("blog").each(function() {
+          var name = $(this).attr('name');
+          var description = $(this).attr('description');
+          var url = $(this).attr('url');
+
+          var blogInfo = "<p><strong>Nombre:</strong> " + name + "</p>" +
+                         "<p><strong>Descripción:</strong> " + description + "</p>" +
+                         "<p><strong>URL:</strong> <a href='" + url + "' target='_blank'>" + url + "</a></p>";
+
+          $("#contenido").append(blogInfo);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

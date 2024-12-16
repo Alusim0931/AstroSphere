@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario dinámico con suma</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    form {
+      margin: 20px;
+    }
+    input[type="text"] {
+      margin: 10px;
+      padding: 5px;
+      width: 200px;
+    }
+    label {
+      margin-left: 5px;
+    }
+  </style>
+</head>
+<body>
+  <form id="formulario">
+    <input type="text" id="numero1" placeholder="Introduce un número" />
+    <input type="text" id="numero2" placeholder="Introduce otro número" />
+    <label>
+      <input type="checkbox" id="mostrarResultado" /> Mostrar resultado
+    </label>
+  </form>
+
+  <script>
+    $(document).ready(function() {
+      $("#mostrarResultado").change(function() {
+        if ($(this).prop("checked")) {
+          const numero1 = parseFloat($("#numero1").val()) || 0;
+          const numero2 = parseFloat($("#numero2").val()) || 0;
+          const suma = numero1 + numero2;
+
+          $("#formulario").append(
+            `<input type="text" id="resultado" value="${suma}" readonly placeholder="Resultado" />`
+          );
+        } else {
+          $("#resultado").remove();
+        }
+      });
+
+      $("#formulario").on("input", "#numero1, #numero2", function() {
+        if ($("#mostrarResultado").prop("checked")) {
+          const numero1 = parseFloat($("#numero1").val()) || 0;
+          const numero2 = parseFloat($("#numero2").val()) || 0;
+          const suma = numero1 + numero2;
+          $("#resultado").val(suma);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

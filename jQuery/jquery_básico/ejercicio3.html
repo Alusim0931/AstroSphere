@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cambiar color del párrafo</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    #parrafo {
+      padding: 20px;
+      text-align: center;
+      border: 1px solid black;
+    }
+    .radio-group {
+      margin: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <p id="parrafo">Este párrafo cambiará de color según el valor del radio seleccionado.</p>
+
+  <div class="radio-group">
+    <label>
+      <input type="radio" name="color" value="red"> Rojo
+    </label>
+    <label>
+      <input type="radio" name="color" value="blue"> Azul
+    </label>
+    <label>
+      <input type="radio" name="color" value="green"> Verde
+    </label>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      $("input[type='radio'][name='color']").change(function() {
+        const colorSeleccionado = $(this).val();
+        $("#parrafo").css("background-color", colorSeleccionado);
+      });
+    });
+  </script>
+</body>
+</html>

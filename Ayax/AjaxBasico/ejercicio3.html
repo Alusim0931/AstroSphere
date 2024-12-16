@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambio de Imagen Asíncrono</title>
+    <style>
+        #image-container {
+            width: 300px;
+            height: 300px;
+            overflow: hidden;
+        }
+        #image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cambio de Imagen Asíncrono</h1>
+    <div id="image-container">
+        <img id="image" src="/images/1.png" alt="Imagen Actual">
+    </div>
+    <button id="change-image-btn">Cambio de Imagen</button>
+
+    <script>
+        document.getElementById('change-image-btn').addEventListener('click', function() {
+            var image = new XMLHttpRequest();
+            image.open('GET', 'obtenerImagen.php', true);
+            
+            image.onreadystatechange = function() {
+                if (image.readyState === 4 && image.status === 200) {
+                    document.getElementById('image').src = image.responseText;
+                }
+            };
+
+            image.send();
+        });
+    </script>
+</body>
+</html>
+
+
+

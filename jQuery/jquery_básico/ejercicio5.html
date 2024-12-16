@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cambio de tamaño con el ratón</title>
+  <script src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
+  <style>
+    .size {
+      font-size: 16pt;
+    }
+  </style>
+</head>
+<body>
+  <p id="parrafo">Este párrafo cambiará de tamaño al pasar el ratón por encima</p>
+
+  <script>
+    $(document).ready(function() {
+      $("#parrafo").on("mouseover", function() {
+        $(this).addClass("size");
+      });
+
+      $("#parrafo").on("mouseout", function() {
+        $(this).removeClass("size");
+      });
+    });
+  </script>
+</body>
+</html>

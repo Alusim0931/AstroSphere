@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capas con jQuery</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .layer {
+      border: 1px solid black;
+      padding: 10px;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+
+  <script>
+    $(document).ready(function() {  
+      const textos = [
+        "Primera capa del documento",
+        "Segunda capa del documento",
+        "Tercera capa del documento"
+      ];
+
+      textos.forEach(texto => {
+        $('#container').append(`<div class="layer">${texto}</div>`);
+      });
+
+      const numeroDeCapas = $(".layer").length;
+      alert(`Hemos creado ${numeroDeCapas} capas.`);
+
+      $(".layer").css("color", "green");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mostrar Fichero de Texto</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    #contenido {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      width: 80%;
+      margin-left: 10%;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <button id="mostrarFichero">Mostrar fichero de texto</button>
+  <div id="contenido"></div>
+
+  <script>
+    $(document).ready(function() {
+      $("#mostrarFichero").click(function() {
+        $.ajax({
+          url: "archivo.txt",
+          method: "GET",
+          success: function(data) {
+            $("#contenido").text(data);
+          },
+          error: function() {
+            $("#contenido").text("No se pudo cargar el archivo.");
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

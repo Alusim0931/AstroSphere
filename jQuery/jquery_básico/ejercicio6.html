@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Efectos con Callback</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    #imagen {
+      width: 300px;
+      height: auto;
+      margin: 20px auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <img id="imagen" src="images/mesa_redonda.jpg" alt="Ejemplo de imagen">
+  <button id="aplicarEfectos">Aplicar Efectos</button>
+
+  <script>
+    $(document).ready(function() {
+      function aplicarEfectos(elemento) {
+        elemento.fadeOut(2000, function() {
+          $(this).slideDown(3000, function() {
+            $(this).slideUp(1000);
+          });
+        });
+      }
+
+      $("#aplicarEfectos").click(function() {
+        aplicarEfectos($("#imagen"));
+      });
+    });
+  </script>
+</body>
+</html>
