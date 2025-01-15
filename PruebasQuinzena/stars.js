@@ -63,3 +63,4 @@ window.addEventListener("resize", () => {
     resizeCanvas();
     createStars();
 });
+
