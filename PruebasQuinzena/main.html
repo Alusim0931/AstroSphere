@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +11,11 @@
     <main>
         <!-- Fondo de estrellas -->
         <canvas id="starCanvas"></canvas>
-        <div class="meteor" id="meteor"></div>
 
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar">
+            <p>Contenido del sidebar</p>
+        </div>
         <!-- Pantalla de bienvenida -->
         <div class="intro">
             <div class="message">
@@ -23,12 +27,29 @@
 
         <!-- Contenido principal -->
         <div class="content">
-            <h2>Contenido Principal</h2>
+            <button id="toggleSidebar" class="sidebar-toggle">☰</button>
+            <h2>Escoge tu planeta</h2>
             <p>¡Aquí comienza tu experiencia web!</p>
+            <div class="cards">
+                <a href="tierra.html" class="card card-tierra">
+                    <h3>Tierra</h3>
+                    <p>El planeta azul.</p>
+                </a>
+                <a href="marte.html" class="card card-marte">
+                    <h3>Marte</h3>
+                    <p>El planeta rojo.</p>
+                </a>
+                <a href="jupiter.html" class="card card-jupiter">
+                    <h3>Júpiter</h3>
+                    <p>El Guardián del Sistema Solar.</p>
+                </a>
+            </div>    
         </div>
     </main>
 
-    <script src="stars.js"></script>
-    <script src="script.js"></script>
+    <script src="js/cards.js"></script>
+    <script src="js/stars.js"></script>
+    <script src="js/script.js"></script>
+
 </body>
 </html>

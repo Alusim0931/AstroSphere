@@ -19,6 +19,71 @@ canvas {
     background: black;
 }
 
+/* Sidebar */
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: width 0.5s ease-in-out;
+}
+
+#toggleSidebar {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    background: #333;
+    color: white;
+    border: none;
+    padding: 5px 8px;  /* Reduce el padding */
+    font-size: 18px;   /* Reduce el tamaño del icono */
+    width: 35px;       /* Ajusta el ancho */
+    height: 35px;      /* Ajusta la altura */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.sidebar-toggle {
+    font-size: 30px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    border: none;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1001;
+}
+
 /* Estrellas en el fondo, visibles y normales al principio */
 .stars {
     position: fixed;
@@ -59,15 +124,8 @@ canvas {
     }
 }
 
-@keyframes zoomEffect {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(10);
-        opacity: 0;
-    }
+.intro.zoom {
+    animation: hyperSpeed 4s ease-in-out forwards;
 }
 
 /* Efecto del contenido principal */
@@ -76,11 +134,65 @@ canvas {
     opacity: 0;
     transition: opacity 2s ease-in-out;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
 }
 
 .showContent {
     display: block;
     opacity: 1;
+}
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.card {
+    background: #1a1a1a;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 200px;
+    height: 300px; /* Aumentar la altura de las tarjetas */
+    text-align: center;
+    transition: transform 0.3s;
+    cursor: pointer;
+    text-decoration: none; /* Eliminar subrayado de los enlaces */
+    color: inherit; /* Mantener el color del texto */
+}
+
+.card:hover {
+    transform: translateY(-10px); /* Efecto de elevación al pasar el cursor */
+}
+
+.card h3 {
+    margin-top: 0;
+}
+
+.card p {
+    margin-bottom: 0;
+}
+
+.card-tierra {
+    background: url('images/tierra.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.card-marte {
+    background: url('images/marte.jpg') no-repeat center center;
+    background-size: cover;
+}
+
+.card-jupiter {
+    background: url('images/jupiter.avif') no-repeat center center;
+    background-size: cover;
 }
 
 .message {
@@ -101,5 +213,3 @@ button {
 button:hover {
     background: #ff4d00;
 }
-
-

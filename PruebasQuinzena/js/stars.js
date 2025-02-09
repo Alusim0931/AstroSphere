@@ -3,7 +3,7 @@ const ctx = canvas.getContext("2d");
 
 let stars = [];
 const starCount = 300; // Número de estrellas
-const speed = 2; // Velocidad del efecto
+let speed = 2; // Velocidad del efecto
 
 // Ajustar el tamaño del canvas
 function resizeCanvas() {
@@ -63,4 +63,3 @@ window.addEventListener("resize", () => {
     resizeCanvas();
     createStars();
 });
-
